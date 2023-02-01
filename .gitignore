@@ -1,0 +1,8 @@
+.parcel-cache
+dist
+node_modules 
+
+# MacOS 사용자의 경우 
+.DS_Store 
+# vscode 관련 옵션 
+.vscode  
