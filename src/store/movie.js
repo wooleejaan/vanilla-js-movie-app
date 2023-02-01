@@ -27,7 +27,15 @@ export const searchMovies = async page => {
   }
 
   try {
-    const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`)
+    const res = await fetch('/api/movie', {
+      method: 'POST',
+      // fetch 함수로 서버에 내용을 전송할 때, body 부분에는 문자열만 담을 수 있으므로 
+      body: JSON.stringify({
+        title: store.state.searchText,
+        // page: page // 속성 이름과 데이터 이름이 같으면 생략 가능하므로 
+        page
+      })
+    })
     // const json = await res.json()
   
     // 더보기 버튼 기능을 구현하려면 totalResults도 가져와야 한다.  
@@ -56,7 +64,13 @@ export const searchMovies = async page => {
 
 export const getMovieDetails = async id => {
   try {
-    const res = await fetch(`https://omdbapi.com?apikey=7035c60c&i=${id}&plot=full`)
+    const res = await fetch('/api/movie', {
+      method: 'POST',
+      body: JSON.stringify({
+        // id: id // 마찬가지로 생략 가능하므로 
+        id
+      })
+    })
     store.state.movie = await res.json()
   } catch(error){
     console.log('getMovieDetails error: ', error)

@@ -1,8 +1,10 @@
 .parcel-cache
 dist
 node_modules 
+.vercel
+.env
 
 # MacOS 사용자의 경우 
 .DS_Store 
 # vscode 관련 옵션 
-.vscode  
+.vscode
