@@ -1,4 +1,9 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "compilerOptions": {
     "target": "ES2015",
     "module": "ESNext", // 우리는 CommonJS가 아니라 ESM의 export/import을 사용할것이므로 
