@@ -1,7 +1,14 @@
 import { Component } from "../core/kernel"
+import { SimpleMovie } from "../store/movie"
+
+interface Props {
+  [key: string]: unknown
+  movie: SimpleMovie
+}
 
 export default class MovieItem extends Component {
-  constructor(props){ // 부모 컴포넌트로부터 영화 정보를 props로 받아 준다.
+  public props!: Props
+  constructor(props: Props){ // 부모 컴포넌트로부터 영화 정보를 props로 받아 준다.
     super({
       props,
       tagName: 'a', // 목록을 클릭하면 상세페이지로 이동해야 하므로 

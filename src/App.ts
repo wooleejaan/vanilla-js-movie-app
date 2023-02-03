@@ -9,6 +9,7 @@ export default class App extends Component {
     const routerView = document.createElement('router-view')
 
     // this.el.classList.add('app')
+    // kernel 컴포넌트 클래스에서 속성에 접근 제어자 public을 붙여줬으므로 더 이상 에러 발생x
     this.el.append(
       theHeader,
       routerView,
