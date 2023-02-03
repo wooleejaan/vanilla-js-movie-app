@@ -1,7 +1,16 @@
 import { Store } from "../core/kernel"
 import userImage from '../public/android-chrome-512x512.png'
 
-export default new Store({
+interface State {
+  photo: string 
+  name: string 
+  email: string 
+  blog: string
+  github: string 
+  repository: string 
+}
+
+export default new Store<State>({
   photo: `${userImage}`,
   name: 'WOOLEE / we are woolee',
   email: 'wooleejaan@gmail.com',

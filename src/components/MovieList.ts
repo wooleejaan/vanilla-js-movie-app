@@ -41,9 +41,9 @@ export default class MovieList extends Component {
       })
     )
 
-    const loaderEl = this.el.querySelector('.the-loader')
-    movieStore.state.loading 
-      ? loaderEl.classList.remove('hide') 
-      : loaderEl.classList.add('hide') 
+    const loaderEl = this.el.querySelector('.the-loader') 
+        movieStore.state.loading 
+      ? loaderEl?.classList.remove('hide') 
+      : loaderEl?.classList.add('hide') 
   }
 }

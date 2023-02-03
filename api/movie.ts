@@ -1,8 +1,9 @@
 import fetch from "node-fetch"
+import { VercelRequest, VercelResponse } from "@vercel/node"
 
 const { APIKEY } = process.env
 
-export default async function handler(request, response){
+export default async function handler(request: VercelRequest, response: VercelResponse){
   const { title, page, id } = JSON.parse(request.body)
   // id를 받으면 영화 상세 정보를 요청하는 것이고, 아니라면 일반적인 영화 목록을 요청하는 것으로 처리한다. 
   const url = id 

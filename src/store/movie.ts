@@ -1,18 +1,68 @@
 import { Store } from "../core/kernel"
 
-const store = new Store({
+export interface SimpleMovie {
+  Title: string
+  Year: string
+  imdbID: string
+  Type: string
+  Poster: string
+}
+
+interface DetailedMovie {
+  Title: string
+  Year: string
+  Rated: string
+  Released: string
+  Runtime: string
+  Genre: string
+  Director: string
+  Writer: string
+  Actors: string
+  Plot: string
+  Language: string
+  Country: string
+  Awards: string
+  Poster: string
+  Ratings: {
+    Source: string
+    Value: string
+  }[]
+  Metascore: string
+  imdbRating: string
+  imdbVotes: string
+  imdbID: string
+  Type: string
+  DVD: string
+  BoxOffice: string
+  Production: string
+  Website: string
+  Response: string
+}
+
+interface State {
+  searchText: string 
+  page: number 
+  pageMax: number 
+  movies: SimpleMovie[]
+  movie: DetailedMovie
+  message: string 
+  loading: boolean 
+}
+
+const store = new Store<State>({
   searchText: '',
   page: 1,
   pageMax: 1,
   movies: [], // movies는 영화 정보로 계속 업데이트 된다. 
-  movie: {}, // 영화 상세 페이지에 들어갈 상세 정보 관리하는 store 
+  // getMovieDetails 함수로 데이터 성공적으로 가져오면 DetailedMovie 타입일 테니까 타입 단언 (이건 개발자만 알고 ts는 모르니까 단언해서 알려주는 거야)
+  movie: {} as DetailedMovie, // 영화 상세 페이지에 들어갈 상세 정보 관리하는 store 
   loading: false,
   message: 'Search for the movie title!'
 })
 
 // store는 상태 부분(데이터), searchMovies는 데이터를 취급하는 함수 
 export default store 
-export const searchMovies = async page => {
+export const searchMovies = async (page: number) => {
   store.state.loading = true 
 
   // 더보기 버튼을 누르면 page를 매개변수로 계속 증가시켜서 넘겨받는데, 그걸 store.state.page 변수도 계속 업데이트해줘야 하므로 
@@ -62,7 +112,7 @@ export const searchMovies = async page => {
   }
 }
 
-export const getMovieDetails = async id => {
+export const getMovieDetails = async (id: string) => {
   try {
     const res = await fetch('/api/movie', {
       method: 'POST',
